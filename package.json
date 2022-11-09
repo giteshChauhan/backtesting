@@ -1,0 +1,17 @@
+{
+  "name": "backtesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "data-forge": "^1.9.6",
+    "data-forge-fs": "^0.0.9",
+    "data-forge-indicators": "^0.2.7",
+    "data-forge-plot": "^1.0.2"
+  }
+}
