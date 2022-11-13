@@ -42,11 +42,7 @@ const App = () => {
       ) : null}
       {data.length ? (
         <>
-          {" "}
-          <h6
-            className="ms-4 mt-2"
-            style={{ color: "#2929e6", marginBottom: "-15px" }}
-          >
+          <h6 style={{ color: "#2929e6", textAlign: "center" }}>
             Last 100 days trade:
           </h6>
           <ChartLine data={data} />
@@ -55,11 +51,7 @@ const App = () => {
 
       {avgData.length ? (
         <>
-          {" "}
-          <h6
-            className="ms-4 mt-2"
-            style={{ color: "green", marginBottom: "-15px" }}
-          >
+          <h6 style={{ color: "green", textAlign: "center" }}>
             Finding 30 day moving average for each day trade & plotting onto
             same chart :
           </h6>
