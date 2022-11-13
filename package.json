@@ -4,7 +4,8 @@
   "description": "- Here I implemented mean reversion strategy for backtesting.\r - I used a NIFTY-50 dataset (2000-2021) for ITC.\r - Also an external library named data-forge used to fetch the data from ITC.csv file\r   & data-forge-plot to visualize data.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start"
   },
   "author": "",
   "license": "ISC",
@@ -15,8 +16,26 @@
   "bugs": {
     "url": "https://github.com/giteshChauhan/backtesting/issues"
   },
-  "homepage": "https://github.com/giteshChauhan/backtesting#readme",
   "dependencies": {
-    "csv-parse": "^5.3.2"
+    "papaparse": "^5.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "recharts": "^2.1.16"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "browser": {
+    "fs": "false"
   }
 }
