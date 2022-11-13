@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Papa from "papaparse";
+import Chart from "./chart";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -9,14 +10,28 @@ const App = () => {
       delimiter: ",",
       download: true,
       header: true,
-      complete: (res) => console.log(res.data),
+      complete: (res) => {
+        let arr = [];
+        for (let i = 0; i < 20; i++) arr.push(res.data[i]);
+        setData(arr);
+      },
     });
   }
 
   return (
     <>
-      <input id="csv-file" type="file" accept=".csv" />
-      <button onClick={() => fetchData()}>Process</button>
+      <div className="input-group m-4">
+        <input
+          className="form-control"
+          id="csv-file"
+          type="file"
+          accept=".csv"
+        />
+        <button onClick={() => fetchData()} className="btn btn-sm btn-success">
+          Process
+        </button>
+      </div>
+      {data.length ? <Chart data={data} /> : null}
     </>
   );
 };
