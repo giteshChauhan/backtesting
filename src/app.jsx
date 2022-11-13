@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Papa from "papaparse";
-import Chart from "./chart";
+import ChartLine from "./chartLine";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -12,7 +12,8 @@ const App = () => {
       header: true,
       complete: (res) => {
         let arr = [];
-        for (let i = 0; i < 20; i++) arr.push(res.data[i]);
+        for (let i = res.data.length - 101; i < res.data.length; i++)
+          arr.push(res.data[i]);
         setData(arr);
       },
     });
@@ -31,7 +32,7 @@ const App = () => {
           Process
         </button>
       </div>
-      {data.length ? <Chart data={data} /> : null}
+      {data.length ? <ChartLine data={data} /> : null}
     </>
   );
 };
