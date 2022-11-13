@@ -1,26 +1,20 @@
 import { useState } from "react";
-import Papa from "papaparse";
 import ChartLine from "./chartLine";
+
+import { fetchData } from "./fileService";
 
 const App = () => {
   const [data, setData] = useState([]);
-
-  function fetchData() {
-    Papa.parse(document.getElementById("csv-file").files[0], {
-      delimiter: ",",
-      download: true,
-      header: true,
-      complete: (res) => {
-        let arr = [];
-        for (let i = res.data.length - 101; i < res.data.length; i++)
-          arr.push(res.data[i]);
-        setData(arr);
-      },
-    });
-  }
+  const [isSpinner, setIsSpinner] = useState(false);
 
   return (
     <>
+      <h6
+        className="ms-4 mt-2"
+        style={{ color: "#2929e6", marginBottom: "-15px" }}
+      >
+        Backtesting Mean Reversion Strategy: using last 100 days trade.
+      </h6>
       <div className="input-group m-4">
         <input
           className="form-control"
@@ -28,10 +22,27 @@ const App = () => {
           type="file"
           accept=".csv"
         />
-        <button onClick={() => fetchData()} className="btn btn-sm btn-success">
+        <button
+          onClick={() => {
+            const data = fetchData("csv-file");
+            setIsSpinner(true);
+            setTimeout(() => {
+              setIsSpinner(false);
+              setData(data);
+            }, 3000);
+          }}
+          className="btn btn-sm btn-success"
+        >
           Process
         </button>
       </div>
+      {isSpinner ? (
+        <div
+          className="spinner-border text-primary"
+          style={{ marginLeft: "44%" }}
+          role="status"
+        />
+      ) : null}
       {data.length ? <ChartLine data={data} /> : null}
     </>
   );
