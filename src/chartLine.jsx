@@ -1,3 +1,5 @@
+/** Here I used recharts library for data visualisation or in our case trades visualisation*/
+
 import {
   ResponsiveContainer,
   LineChart,
