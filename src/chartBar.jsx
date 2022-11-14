@@ -1,3 +1,5 @@
+/** Here I used Barchart from recharts lib to visualize my profits */
+
 import {
   ResponsiveContainer,
   BarChart,
