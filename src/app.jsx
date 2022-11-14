@@ -1,12 +1,19 @@
-import { useState } from "react";
-import ChartLine from "./chartLine";
+/** Here I used Barchart from recharts lib to visualize my profits */
 
-import { fetchData, movingAverage } from "./fileService";
+import { useState } from "react";
+
+import ChartBar from "./chartBar";
+import ChartLine from "./chartLine";
+import Table from "./table";
+
+import { fetchData, movingAverage, trades } from "./fileService";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [avgData, setAvgData] = useState([]);
+  const [tradeData, setTradeData] = useState([]);
   const [isSpinner, setIsSpinner] = useState(false);
+  const [isSpinnerLower, setIsSpinnerLower] = useState(false);
 
   return (
     <>
@@ -58,6 +65,31 @@ const App = () => {
           <ChartLine data={avgData} isAvg={true} />
         </>
       ) : null}
+      {avgData.length ? (
+        <button
+          className="btn btn-success mb-4"
+          style={{ width: "100%" }}
+          onClick={() => {
+            const data = trades(avgData);
+            setIsSpinnerLower(true);
+            setTimeout(() => {
+              setIsSpinnerLower(false);
+              setTradeData(data);
+            }, 3000);
+          }}
+        >
+          Process Trades
+        </button>
+      ) : null}
+      {isSpinnerLower ? (
+        <div
+          className="spinner-border text-success"
+          style={{ marginLeft: "44%" }}
+          role="status"
+        />
+      ) : null}
+      {tradeData.length ? <Table data={tradeData} /> : null}
+      {tradeData.length ? <ChartBar data={tradeData} /> : null}
     </>
   );
 };
