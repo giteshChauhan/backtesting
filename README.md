@@ -1,4 +1,4 @@
-# Backtest: https://drag-equation-calculator.herokuapp.com/backtest
+# Backtest: Currently in dev stage
 
 ## About:
 - To implement mean reversion strategy for backtesting.
